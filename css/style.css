@@ -1,0 +1,229 @@
+ @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+}
+.btn {
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+header {
+  font-weight: 800;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .flex-container {
+  padding: 20px 0;
+}
+
+.form-input {
+  margin: 30px 0;
+}
+.form-group {
+  display: flex;
+  padding-right: 70px;
+  border-radius: 3px;
+}
+input[type="search"] {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 6px 30px 6px 8px;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+input[type="search"]:focus {
+  outline: none;
+}
+.search-icon {
+  width: 40px;
+  padding: 6px 8px;
+  margin: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.search-icon:hover {
+  opacity: 1;
+}
+.dropdown {
+  padding: 6px 10px;
+  font-weight: 600;
+}
+.dropdown .flex-container {
+  gap: 20px;
+}
+.drop-icon i {
+  font-weight: 800;
+  font-size: 18px;
+  cursor: pointer;
+}
+.card {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.card-body {
+  padding: 20px 10px;
+}
+h2 {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.bold {
+  font-weight: 800;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+section {
+  margin-bottom: 20px;
+}
+
+/* Detailed Screen */
+.back {
+  margin: 30px 0;
+}
+.back a {
+  display: inline-block;
+  padding: 5px 15px;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 2px 2px 5px -1px hsl(0, 0%, 52%), 2px 2px 5px -1px hsl(0, 0%, 52%);
+  border-radius: 5px;
+}
+.content {
+  margin: 20px 0 30px;
+}
+.back span:first-child {
+  display: inline-block;
+  margin-right: 12px;
+}
+.borders a {
+  display: inline-block;
+  margin: 0 3px;
+  padding: 2px 5px;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 2px 2px 2px -1px hsl(0, 0%, 52%), 2px 2px 2px -1px hsl(0, 0%, 52%);
+  border-radius: 5px;
+}
+.detailed__grid {
+  display: grid;
+  grid-template-areas:
+    "img img main additional"
+    "img img main additional"
+    "img img borders borders";
+  align-items: center;
+  /* gap: 40px; */
+  /* row-gap: 50px; */
+  column-gap: 40px;
+}
+
+.detailed__grid .img-wrapper {
+  grid-area: img;
+}
+.detailed__grid .main-details {
+  grid-area: main;
+}
+.detailed__grid .additional-info {
+  grid-area: additional;
+}
+
+.borders {
+  grid-area: borders;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .form-group {
+    padding-right: 20px;
+  }
+  input[type="search"] {
+    padding: 6px 10px 6px 8px;
+  }
+}
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form-group {
+    padding-right: 0px;
+  }
+  /* Detailed page */
+  .detailed__grid {
+    grid-template-areas:
+      "img img main "
+      "img img main "
+      "img img  additional"
+      "img img  additional"
+      "borders borders borders";
+    column-gap: 40px;
+    row-gap: 20px;
+  }
+}
+@media (max-width: 550px) {
+  .form-input .flex-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .dropdown .flex-container {
+    flex-direction: row;
+  }
+  .form-group {
+    width: 100%;
+  }
+  .borders a {
+    margin: 3px;
+  }
+}
+
+@media (max-width: 450px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  /* detailed Screen */
+  .detailed__grid {
+    grid-template-areas:
+      "img img img "
+      "img img img "
+      "main main  main"
+      "additional additional  additional"
+      "borders borders borders";
+    gap: 10px;
+  }
+}
