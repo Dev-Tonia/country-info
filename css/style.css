@@ -1,9 +1,23 @@
- @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --bg-color: hsl(0, 0%, 98%);
+  --text-color: hsl(200, 15%, 8%);
+  --primary-color: hsl(0, 0%, 100%);
+  --input-color: hsl(0, 0%, 52%);
+}
+
+.dark-mode {
+  --bg-color: hsl(207, 26%, 17%);
+  --text-color: hsl(0, 0%, 100%);
+  --primary-color: hsl(209, 23%, 22%);
+  --input-color: var(--text-color);
 }
 
 .container {
@@ -12,10 +26,13 @@
 }
 a {
   text-decoration: none;
+  color: var(--text-color);
 }
 body {
   font-size: 14px;
   font-family: "Nunito Sans", sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 .btn {
   outline: none;
@@ -23,9 +40,12 @@ body {
   background: transparent;
   cursor: pointer;
   font-weight: 600;
+  color: var(--text-color);
 }
 header {
   font-weight: 800;
+  box-shadow: 0 2px 1.5px -1.5px hsl(0, 0%, 52%);
+  background-color: var(--primary-color);
 }
 img {
   width: 100%;
@@ -47,6 +67,9 @@ header .flex-container {
   display: flex;
   padding-right: 70px;
   border-radius: 3px;
+  background: var(--primary-color);
+  box-shadow: 2px 2px 5px -1px hsl(0, 0%, 52%),
+    -2px 2px 5px -1px hsl(0, 0%, 52%);
 }
 input[type="search"] {
   border: none;
@@ -57,6 +80,9 @@ input[type="search"] {
   color: inherit;
   border: 1px solid transparent;
   border-radius: inherit;
+}
+input[type="search"]::placeholder {
+  color: var(--input-color);
 }
 
 input[type="search"]:focus {
@@ -77,6 +103,9 @@ input[type="search"]:focus {
 .dropdown {
   padding: 6px 10px;
   font-weight: 600;
+  background: var(--primary-color);
+  box-shadow: 2px 2px 5px -1px hsl(0, 0%, 52%),
+    -2px 2px 5px -1px hsl(0, 0%, 52%);
 }
 .dropdown .flex-container {
   gap: 20px;
@@ -89,6 +118,9 @@ input[type="search"]:focus {
 .card {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  background: var(--primary-color);
+  box-shadow: 1px 1px 5px -1px hsl(0, 0%, 67%),
+    -1px 1px 4px -1px hsl(0, 0%, 67%);
 }
 
 .card-body {
@@ -118,7 +150,7 @@ section {
 .back a {
   display: inline-block;
   padding: 5px 15px;
-  background: hsl(0, 0%, 100%);
+  background: var(--primary-color);
   box-shadow: 2px 2px 5px -1px hsl(0, 0%, 52%), 2px 2px 5px -1px hsl(0, 0%, 52%);
   border-radius: 5px;
 }
@@ -133,7 +165,7 @@ section {
   display: inline-block;
   margin: 0 3px;
   padding: 2px 5px;
-  background: hsl(0, 0%, 100%);
+  background: var(--primary-color);
   box-shadow: 2px 2px 2px -1px hsl(0, 0%, 52%), 2px 2px 2px -1px hsl(0, 0%, 52%);
   border-radius: 5px;
 }
