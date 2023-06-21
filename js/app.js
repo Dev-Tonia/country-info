@@ -21,15 +21,15 @@ toggleDarkModeEl.addEventListener("click", function () {
 
 async function displayAllCountry() {
   const results = await fetchData("all");
-  // results.sort(function (a, b) {
-  //   if (a.name.common.toLowerCase() < b.name.common.toLowerCase()) {
-  //     return -1;
-  //   }
-  //   if (a.name.common.toLowerCase() > b.name.common.toLowerCase()) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // });
+  results.sort(function (a, b) {
+    if (a.name.common.toLowerCase() < b.name.common.toLowerCase()) {
+      return -1;
+    }
+    if (a.name.common.toLowerCase() > b.name.common.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  });
   results.forEach((result) => {
     const div = document.createElement("div");
     div.classList.add("card");
