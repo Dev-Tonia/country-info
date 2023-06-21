@@ -5,8 +5,8 @@ const global = {
 console.log(window.location.pathname);
 const toggleDarkModeEl = document.querySelector(".btn-toggle");
 const bodyEl = document.querySelector("body");
-
-toggleDarkModeEl.addEventListener("click", function () {
+const inputEl = document.querySelector(`input[type= 'text']`);
+function toggleLightAndDarkMode() {
   const moonIcon = document.querySelector("i");
   global.isDarkMode = bodyEl.classList.toggle("dark-mode");
 
@@ -17,8 +17,25 @@ toggleDarkModeEl.addEventListener("click", function () {
     moonIcon.classList.add("bi-moon");
     moonIcon.classList.remove("bi-moon-fill");
   }
-});
+}
 
+try {
+  inputEl.addEventListener("input", function (e) {
+    const allCountryNameEl = document.querySelectorAll(".card-body h2");
+    let text = e.target.value.toLowerCase();
+    allCountryNameEl.forEach((country) => {
+      let item = country.textContent.toLowerCase();
+      if (item.includes(text)) {
+        // item.style.display = "flex";
+        country.closest(".card").style.display = "block";
+      } else {
+        country.closest(".card").style.display = "none";
+      }
+    });
+  });
+} catch (error) {
+  // console.log(error.message);
+}
 async function displayAllCountry() {
   const results = await fetchData("all");
   results.sort(function (a, b) {
@@ -163,5 +180,7 @@ async function init() {
       displayDetailedPage();
       break;
   }
+
+  toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
 }
 init();

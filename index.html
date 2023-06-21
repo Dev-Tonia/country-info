@@ -26,197 +26,20 @@
           <div class="flex-container">
             <div class="form-group form-group-light">
               <i class="bi bi-search search-icon"></i>
-              <input type="search" placeholder="Search for a country." />
+              <input type="text" placeholder="Search for a country." />
             </div>
             <div class="dropdown dropdown-light">
-              <div class="flex-container">
-                <p>Filter by Region</p>
-                <div class="drop-icon">
-                  <i class="bi bi-chevron-down"></i>
-                </div>
-              </div>
+              <select name="regions" id="regions">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
             </div>
           </div>
         </div>
         <section>
-          <div id="all-country" class="grid">
-            <!-- <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div>
-            <div class="card">
-              <a href="detail.html?name=${result.name.common}">
-                <div class="card-header">
-                  <img src="./images/germay-flag.png" alt="" />
-                </div>
-                <div class="card-body">
-                  <h2>Germany</h2>
-                  <p>
-                    <span class="bold">Population:</span>
-                    <span class="value">81,700,900</span>
-                  </p>
-                  <p>
-                    <span class="bold">Region:</span>
-                    <span class="value">Europe</span>
-                  </p>
-                  <p>
-                    <span class="bold">Capital:</span>
-                    <span class="value">Berlin</span>
-                  </p>
-                </div>
-              </a>
-            </div> -->
-          </div>
+          <div id="all-country" class="grid"></div>
         </section>
       </div>
     </main>

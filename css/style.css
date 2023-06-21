@@ -71,7 +71,7 @@ header .flex-container {
   box-shadow: 2px 2px 5px -1px hsl(0, 0%, 52%),
     -2px 2px 5px -1px hsl(0, 0%, 52%);
 }
-input[type="search"] {
+input[type="text"] {
   border: none;
   background: transparent;
   margin: 0;
@@ -81,11 +81,11 @@ input[type="search"] {
   border: 1px solid transparent;
   border-radius: inherit;
 }
-input[type="search"]::placeholder {
+input[type="text"]::placeholder {
   color: var(--input-color);
 }
 
-input[type="search"]:focus {
+input[type="text"]:focus {
   outline: none;
 }
 .search-icon {
@@ -207,7 +207,7 @@ section {
   .form-group {
     padding-right: 20px;
   }
-  input[type="search"] {
+  input[type="text"] {
     padding: 6px 10px 6px 8px;
   }
 }
