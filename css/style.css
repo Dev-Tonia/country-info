@@ -122,6 +122,11 @@ input[type="search"]:focus {
   box-shadow: 1px 1px 5px -1px hsl(0, 0%, 67%),
     -1px 1px 4px -1px hsl(0, 0%, 67%);
 }
+.card-header img {
+  height: 160px;
+  width: 100%;
+  object-fit: cover;
+}
 
 .card-body {
   padding: 20px 10px;
