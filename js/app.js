@@ -53,20 +53,20 @@ async function displayAllCountry() {
 
 // Fetch data from the local json
 async function fetchData(endpoint) {
-  //   showSpinner();
+  showSpinner();
   const response = await fetch(`https://restcountries.com/v3.1/${endpoint}`);
 
   const data = await response.json();
-  //   hideSpinner();
+  hideSpinner();
   return data;
 }
 
-// function showSpinner() {
-//   document.querySelector(".spinner").classList.add("show");
-// }
-// function hideSpinner() {
-//   document.querySelector(".spinner").classList.remove("show");
-// }
+function showSpinner() {
+  document.querySelector(".spinner").classList.add("show");
+}
+function hideSpinner() {
+  document.querySelector(".spinner").classList.remove("show");
+}
 // Route
 async function init() {
   switch (global.currentPage) {
