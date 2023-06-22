@@ -118,13 +118,36 @@ async function displayDetailedPage() {
   persistDarkMode();
   let name = window.location.search.split("=")[1];
   name = name.split("%20").join(" ");
-  console.log(name);
-  let result;
 
+  let result;
+  let currencyCode;
+  let allLanguage = [];
+
+  // Displaying the countries details depending on country code is or country name
   if (name.length === 3) {
     [result] = await fetchData(`/alpha/${name}`);
   } else {
     [result] = await fetchData(`/name/${name}`);
+  }
+  let { languages } = result;
+  let { currencies } = result;
+  let {
+    name: { nativeName },
+  } = result;
+  console.log(nativeName);
+  let localName = [];
+  // getting the currency
+
+  for (const key of Object.keys(currencies)) {
+    currencyCode = currencies[key];
+  }
+  // getting the language of the country
+
+  for (const key of Object.keys(languages)) {
+    allLanguage.push(languages[key]);
+  }
+  for (const key of Object.keys(nativeName)) {
+    localName.push(nativeName[key]);
   }
 
   const div = document.createElement("div");
@@ -142,7 +165,9 @@ async function displayDetailedPage() {
     <h2>${result.name.common}</h2>
     <p>
       <span class="bold">Native Name:</span>
-      <span class="value">${result.name.common}</span>
+      <span class="value">${localName
+        .map((name) => `${name.common}`)
+        .join(", ")}</span>
     </p>
     <p>
       <span class="bold">Population:</span>
@@ -164,15 +189,17 @@ async function displayDetailedPage() {
   <div class="additional-info">
     <p>
       <span class="bold">Top Level Domain:</span>
-      <span class="value">${result.tld[0]}</span>
+      <span class="value">${
+        result.tld ? result.tld[0] : `Not in the database`
+      }</span>
     </p>
     <p>
       <span class="bold">Currencies:</span>
-      <span class="value">Euro</span>
+      <span class="value">${currencyCode.name}</span>
     </p>
     <p>
       <span class="bold">Language:</span>
-      <span class="value">kkkk</span>
+      <span class="value">${allLanguage.join(", ")}</span>
     </p>
   </div>
   <div class="borders">
