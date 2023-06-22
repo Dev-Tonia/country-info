@@ -2,10 +2,17 @@ const global = {
   currentPage: window.location.pathname,
   isDarkMode: false,
 };
-console.log(window.location.pathname);
+
 const toggleDarkModeEl = document.querySelector(".btn-toggle");
 const bodyEl = document.querySelector("body");
 const inputEl = document.querySelector(`input[type= 'text']`);
+const selectEl = document.querySelector("select");
+const allCountryEl = document.querySelector("#all-country");
+let region;
+
+let target = document.querySelector("#regions");
+let results = [];
+let resultsByRegion = [];
 function toggleLightAndDarkMode() {
   const moonIcon = document.querySelector("i");
   global.isDarkMode = bodyEl.classList.toggle("dark-mode");
@@ -18,6 +25,20 @@ function toggleLightAndDarkMode() {
     moonIcon.classList.remove("bi-moon-fill");
   }
 }
+
+try {
+  target.addEventListener("change", async function () {
+    region = target.value;
+
+    if (region === "filter by regions") {
+      return;
+    }
+    resultsByRegion = await fetchData(`/region/${region}`);
+    allCountryEl.innerHTML = "";
+    displayAllCountry();
+    // target.selectedIndex = 0;
+  });
+} catch (error) {}
 
 try {
   inputEl.addEventListener("input", function (e) {
@@ -37,7 +58,14 @@ try {
   // console.log(error.message);
 }
 async function displayAllCountry() {
-  const results = await fetchData("all");
+  // console.log(await getResult());
+  let data = await fetchData("all");
+  if (resultsByRegion.length === 0) {
+    results = data;
+  } else {
+    results = resultsByRegion;
+  }
+  console.log(results);
   results.sort(function (a, b) {
     if (a.name.common.toLowerCase() < b.name.common.toLowerCase()) {
       return -1;
@@ -72,10 +100,9 @@ async function displayAllCountry() {
     </div>
   </a>
     `;
-    document.querySelector("#all-country").appendChild(div);
+    allCountryEl.appendChild(div);
   });
 }
-
 async function displayDetailedPage() {
   let name = window.location.search.split("=")[1];
   name = name.split("%20").join(" ");

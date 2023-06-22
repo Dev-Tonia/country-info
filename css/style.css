@@ -103,17 +103,14 @@ input[type="text"]:focus {
 .dropdown {
   padding: 6px 10px;
   font-weight: 600;
+  border: none;
+  outline: none;
+  color: var(--text-color);
   background: var(--primary-color);
   box-shadow: 2px 2px 5px -1px hsl(0, 0%, 52%),
     -2px 2px 5px -1px hsl(0, 0%, 52%);
 }
-.dropdown .flex-container {
-  gap: 20px;
-}
-.drop-icon i {
-  font-weight: 800;
-  font-size: 18px;
-  cursor: pointer;
+.dropdown:focus {
 }
 .card {
   border-bottom-left-radius: 5px;
