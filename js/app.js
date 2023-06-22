@@ -1,6 +1,5 @@
 const global = {
   currentPage: window.location.pathname,
-  isDarkMode: false,
 };
 
 const toggleDarkModeEl = document.querySelector(".btn-toggle");
@@ -8,16 +7,19 @@ const bodyEl = document.querySelector("body");
 const inputEl = document.querySelector(`input[type= 'text']`);
 const selectEl = document.querySelector("select");
 const allCountryEl = document.querySelector("#all-country");
-let region;
+const target = document.querySelector("#regions");
+const moonIcon = document.querySelector("i");
 
-let target = document.querySelector("#regions");
-let results = [];
 let resultsByRegion = [];
-function toggleLightAndDarkMode() {
-  const moonIcon = document.querySelector("i");
-  global.isDarkMode = bodyEl.classList.toggle("dark-mode");
+let darkMode;
 
-  if (global.isDarkMode) {
+function toggleLightAndDarkMode() {
+  let isDarkMode = false;
+
+  isDarkMode = bodyEl.classList.toggle("dark-mode");
+  localStorage.setItem("darkMode", isDarkMode);
+
+  if (isDarkMode) {
     moonIcon.classList.remove("bi-moon");
     moonIcon.classList.add("bi-moon-fill");
   } else {
@@ -26,46 +28,55 @@ function toggleLightAndDarkMode() {
   }
 }
 
-try {
-  target.addEventListener("change", async function () {
-    region = target.value;
+async function filterByRegion() {
+  let region;
 
-    if (region === "filter by regions") {
-      return;
+  region = target.value;
+
+  if (region === "filter by regions") {
+    return;
+  }
+  resultsByRegion = await fetchData(`/region/${region}`);
+  allCountryEl.innerHTML = "";
+  displayAllCountry();
+  // target.selectedIndex = 0;
+}
+
+function searchCountry(e) {
+  const allCountryNameEl = document.querySelectorAll(".card-body h2");
+  let text = e.target.value.toLowerCase();
+  allCountryNameEl.forEach((country) => {
+    let item = country.textContent.toLowerCase();
+    if (item.includes(text)) {
+      // item.style.display = "flex";
+      country.closest(".card").style.display = "block";
+    } else {
+      country.closest(".card").style.display = "none";
     }
-    resultsByRegion = await fetchData(`/region/${region}`);
-    allCountryEl.innerHTML = "";
-    displayAllCountry();
-    // target.selectedIndex = 0;
   });
-} catch (error) {}
-
-try {
-  inputEl.addEventListener("input", function (e) {
-    const allCountryNameEl = document.querySelectorAll(".card-body h2");
-    let text = e.target.value.toLowerCase();
-    allCountryNameEl.forEach((country) => {
-      let item = country.textContent.toLowerCase();
-      if (item.includes(text)) {
-        // item.style.display = "flex";
-        country.closest(".card").style.display = "block";
-      } else {
-        country.closest(".card").style.display = "none";
-      }
-    });
-  });
-} catch (error) {
-  // console.log(error.message);
+}
+function persistDarkMode() {
+  darkMode = localStorage.getItem("darkMode");
+  console.log("detail page::", darkMode);
+  if (darkMode === "true") {
+    bodyEl.classList.add("dark-mode");
+    moonIcon.classList.remove("bi-moon");
+    moonIcon.classList.add("bi-moon-fill");
+  } else {
+    moonIcon.classList.add("bi-moon");
+    moonIcon.classList.remove("bi-moon-fill");
+  }
 }
 async function displayAllCountry() {
-  // console.log(await getResult());
+  persistDarkMode();
+  let results = [];
+
   let data = await fetchData("all");
   if (resultsByRegion.length === 0) {
     results = data;
   } else {
     results = resultsByRegion;
   }
-  console.log(results);
   results.sort(function (a, b) {
     if (a.name.common.toLowerCase() < b.name.common.toLowerCase()) {
       return -1;
@@ -104,6 +115,7 @@ async function displayAllCountry() {
   });
 }
 async function displayDetailedPage() {
+  persistDarkMode();
   let name = window.location.search.split("=")[1];
   name = name.split("%20").join(" ");
   console.log(name);
@@ -201,9 +213,11 @@ async function init() {
     case "/":
     case "/index.html":
       displayAllCountry();
+      inputEl.addEventListener("input", searchCountry);
+      target.addEventListener("change", filterByRegion);
+
       break;
     case `/detail.html`:
-      //   detailedPage();
       displayDetailedPage();
       break;
   }
