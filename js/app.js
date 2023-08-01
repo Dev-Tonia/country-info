@@ -248,7 +248,7 @@ async function init() {
       displayDetailedPage();
       break;
   }
-
+ displayAllCountry();
   toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
 }
 init();
