@@ -8,25 +8,24 @@ const inputEl = document.querySelector(`input[type= 'text']`);
 const selectEl = document.querySelector("select");
 const allCountryEl = document.querySelector("#all-country");
 const target = document.querySelector("#regions");
-const moonIcon = document.querySelector("i");
 
 let resultsByRegion = [];
 let darkMode;
 
-function toggleLightAndDarkMode() {
-  let isDarkMode = false;
+// function toggleLightAndDarkMode() {
+//   let isDarkMode = false;
 
-  isDarkMode = bodyEl.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", isDarkMode);
+//   isDarkMode = bodyEl.classList.toggle("dark-mode");
+//   localStorage.setItem("darkMode", isDarkMode);
 
-  if (isDarkMode) {
-    moonIcon.classList.remove("bi-moon");
-    moonIcon.classList.add("bi-moon-fill");
-  } else {
-    moonIcon.classList.add("bi-moon");
-    moonIcon.classList.remove("bi-moon-fill");
-  }
-}
+//   if (isDarkMode) {
+//     moonIcon.classList.remove("bi-moon");
+//     moonIcon.classList.add("bi-moon-fill");
+//   } else {
+//     moonIcon.classList.add("bi-moon");
+//     moonIcon.classList.remove("bi-moon-fill");
+//   }
+// }
 
 async function filterByRegion() {
   let region;
@@ -55,20 +54,20 @@ function searchCountry(e) {
     }
   });
 }
-function persistDarkMode() {
-  darkMode = localStorage.getItem("darkMode");
-  console.log("detail page::", darkMode);
-  if (darkMode === "true") {
-    bodyEl.classList.add("dark-mode");
-    moonIcon.classList.remove("bi-moon");
-    moonIcon.classList.add("bi-moon-fill");
-  } else {
-    moonIcon.classList.add("bi-moon");
-    moonIcon.classList.remove("bi-moon-fill");
-  }
-}
+// function persistDarkMode() {
+//   darkMode = localStorage.getItem("darkMode");
+//   console.log("detail page::", darkMode);
+//   if (darkMode === "true") {
+//     bodyEl.classList.add("dark-mode");
+//     moonIcon.classList.remove("bi-moon");
+//     moonIcon.classList.add("bi-moon-fill");
+//   } else {
+//     moonIcon.classList.add("bi-moon");
+//     moonIcon.classList.remove("bi-moon-fill");
+//   }
+// }
 async function displayAllCountry() {
-  persistDarkMode();
+  // persistDarkMode();
   let results = [];
 
   let data = await fetchData("all");
@@ -90,7 +89,7 @@ async function displayAllCountry() {
     const div = document.createElement("div");
     div.classList.add("card");
     div.innerHTML = `
-    <a href="detail.html?name=${result.name.common}">
+    <a href="detail.html?name=${result.name.common}" onClick ="goToDetailedPage(${result.name.common})">
     <div class="card-header">
       <img src="${result.flags.png}" alt="${result.flags.alt}" />
     </div>
@@ -114,110 +113,12 @@ async function displayAllCountry() {
     allCountryEl.appendChild(div);
   });
 }
-async function displayDetailedPage() {
-  persistDarkMode();
-  let name = window.location.search.split("=")[1];
-  name = name.split("%20").join(" ");
 
-  let result;
-  let currencyCode;
-  let allLanguage = [];
-
-  // Displaying the countries details depending on country code is or country name
-  if (name.length === 3) {
-    [result] = await fetchData(`/alpha/${name}`);
-  } else {
-    [result] = await fetchData(`/name/${name}`);
-  }
-  let { languages } = result;
-  let { currencies } = result;
-  let {
-    name: { nativeName },
-  } = result;
-  console.log(nativeName);
-  let localName = [];
-  // getting the currency
-
-  for (const key of Object.keys(currencies)) {
-    currencyCode = currencies[key];
-  }
-  // getting the language of the country
-
-  for (const key of Object.keys(languages)) {
-    allLanguage.push(languages[key]);
-  }
-  for (const key of Object.keys(nativeName)) {
-    localName.push(nativeName[key]);
-  }
-
-  const div = document.createElement("div");
-  div.classList.add("detailed__grid");
-  div.innerHTML = `
-
-  <div class="img-wrapper">
-  ${
-    result.flags.png
-      ? ` <img src=${result.flags.png} alt="${result.flags.alt}" />`
-      : ` <img src="../images/no-image-icon-6.png" alt="" />`
-  }
-  </div>
-  <div class="main-details">
-    <h2>${result.name.common}</h2>
-    <p>
-      <span class="bold">Native Name:</span>
-      <span class="value">${localName
-        .map((name) => `${name.common}`)
-        .join(", ")}</span>
-    </p>
-    <p>
-      <span class="bold">Population:</span>
-      <span class="value">${result.population}</span>
-    </p>
-    <p>
-      <span class="bold">Region:</span>
-      <span class="value">${result.region}</span>
-    </p>
-    <p>
-      <span class="bold">Sub Region:</span>
-      <span class="value">${result.subregion}</span>
-    </p>
-    <p>
-      <span class="bold">Capital:</span>
-      <span class="value">${result.capital}</span>
-    </p>
-  </div>
-  <div class="additional-info">
-    <p>
-      <span class="bold">Top Level Domain:</span>
-      <span class="value">${
-        result.tld ? result.tld[0] : `Not in the database`
-      }</span>
-    </p>
-    <p>
-      <span class="bold">Currencies:</span>
-      <span class="value">${currencyCode.name}</span>
-    </p>
-    <p>
-      <span class="bold">Language:</span>
-      <span class="value">${allLanguage.join(", ")}</span>
-    </p>
-  </div>
-  <div class="borders">
-    <span class="bold">Border Countries: </span>
-   ${
-     result.borders
-       ? result.borders
-           .map(
-             (border) => `<a href="detail.html?isoCode=${border}">${border}</a>`
-           )
-           .join("")
-       : `<p>No Neighboring Country</p>`
-   }
-  </div>
-    `;
-  document.querySelector("#content").appendChild(div);
+// Goto detailed page
+function goToDetailedPage(countryName) {
+  // localStorage.setItem("name", countryName);
+  window.location.href = "detail.html";
 }
-
 // Fetch data from the local json
 async function fetchData(endpoint) {
   showSpinner();
@@ -236,19 +137,13 @@ function hideSpinner() {
 }
 // Route
 async function init() {
-  switch (global.currentPage) {
-    case "/":
-    case "/index.html":
-      displayAllCountry();
-      inputEl.addEventListener("input", searchCountry);
-      target.addEventListener("change", filterByRegion);
+  inputEl.addEventListener("input", searchCountry);
+  target.addEventListener("change", filterByRegion);
+  displayAllCountry();
 
-      break;
-    case `/detail.html`:
-      displayDetailedPage();
-      break;
-  }
-
-  toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
+  // toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
 }
 init();
+
+// document.addEventListener("DOMContentLoaded", );
+// export default  persistDarkMode ;
