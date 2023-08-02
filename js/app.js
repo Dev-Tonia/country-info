@@ -248,11 +248,11 @@ async function init() {
   //     displayDetailedPage();
   //     break;
   // }
-  if (global.currentPage === "/" || global.currentPage === "/index.html") {
+  if (window.location.href = 'single.html' === "/" || global.currentPage === "/index.html") {
     displayAllCountry();
     inputEl.addEventListener("input", searchCountry);
     target.addEventListener("change", filterByRegion);
-  } else if (global.currentPage === `/detail.html`) {
+  } else if (window.location.href = 'single.html' === `/detail.html`) {
     displayDetailedPage();
   }
   toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
