@@ -236,17 +236,24 @@ function hideSpinner() {
 }
 // Route
 async function init() {
-  switch (global.currentPage) {
-    case "/":
-    case "/index.html":
-      displayAllCountry();
-      inputEl.addEventListener("input", searchCountry);
-      target.addEventListener("change", filterByRegion);
+  // switch (global.currentPage) {
+  //   case "/":
+  //   case "/index.html":
+  //     displayAllCountry();
+  //     inputEl.addEventListener("input", searchCountry);
+  //     target.addEventListener("change", filterByRegion);
 
-      break;
-    case `/detail.html`:
-      displayDetailedPage();
-      break;
+  //     break;
+  //   case `/detail.html`:
+  //     displayDetailedPage();
+  //     break;
+  // }
+  if (global.currentPage === "/" || global.currentPage === "/index.html") {
+    displayAllCountry();
+    inputEl.addEventListener("input", searchCountry);
+    target.addEventListener("change", filterByRegion);
+  } else if (global.currentPage === `/detail.html`) {
+    displayDetailedPage();
   }
   toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
 }
