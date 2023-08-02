@@ -136,6 +136,7 @@ function hideSpinner() {
   document.querySelector(".spinner").classList.remove("show");
 }
 // Route
+<<<<<<< HEAD
 async function init() {
   inputEl.addEventListener("input", searchCountry);
   target.addEventListener("change", filterByRegion);
@@ -147,3 +148,37 @@ init();
 
 // document.addEventListener("DOMContentLoaded", );
 // export default  persistDarkMode ;
+=======
+// async function init() {
+//   // switch (global.currentPage) {
+//   //   case "/":
+//   //   case "/index.html":
+//   //     displayAllCountry();
+//   //     inputEl.addEventListener("input", searchCountry);
+//   //     target.addEventListener("change", filterByRegion);
+
+//   //     break;
+//   //   case `/detail.html`:
+//   //     displayDetailedPage();
+//   //     break;
+//   // }
+//   if (window.location.href = 'single.html' === "/" || global.currentPage === "/index.html") {
+//     displayAllCountry();
+//     inputEl.addEventListener("input", searchCountry);
+//     target.addEventListener("change", filterByRegion);
+//   } else if (window.location.href = 'single.html' === `/detail.html`) {
+//     displayDetailedPage();
+//   }
+//   toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
+// }
+// init();
+async function init() {
+  displayAllCountry();
+  inputEl.addEventListener("input", searchCountry);
+  target.addEventListener("change", filterByRegion);
+
+  toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
+}
+
+document.addEventListener("DOMContentLoaded", init);
+>>>>>>> ce58e2a2dc35b1f6caa6987ef888ffbb8e45d85b
