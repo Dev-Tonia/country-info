@@ -235,26 +235,35 @@ function hideSpinner() {
   document.querySelector(".spinner").classList.remove("show");
 }
 // Route
-async function init() {
-  // switch (global.currentPage) {
-  //   case "/":
-  //   case "/index.html":
-  //     displayAllCountry();
-  //     inputEl.addEventListener("input", searchCountry);
-  //     target.addEventListener("change", filterByRegion);
+// async function init() {
+//   // switch (global.currentPage) {
+//   //   case "/":
+//   //   case "/index.html":
+//   //     displayAllCountry();
+//   //     inputEl.addEventListener("input", searchCountry);
+//   //     target.addEventListener("change", filterByRegion);
 
-  //     break;
-  //   case `/detail.html`:
-  //     displayDetailedPage();
-  //     break;
-  // }
-  if (window.location.href = 'single.html' === "/" || global.currentPage === "/index.html") {
-    displayAllCountry();
-    inputEl.addEventListener("input", searchCountry);
-    target.addEventListener("change", filterByRegion);
-  } else if (window.location.href = 'single.html' === `/detail.html`) {
-    displayDetailedPage();
-  }
+//   //     break;
+//   //   case `/detail.html`:
+//   //     displayDetailedPage();
+//   //     break;
+//   // }
+//   if (window.location.href = 'single.html' === "/" || global.currentPage === "/index.html") {
+//     displayAllCountry();
+//     inputEl.addEventListener("input", searchCountry);
+//     target.addEventListener("change", filterByRegion);
+//   } else if (window.location.href = 'single.html' === `/detail.html`) {
+//     displayDetailedPage();
+//   }
+//   toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
+// }
+// init();
+async function init() {
+  displayAllCountry();
+  inputEl.addEventListener("input", searchCountry);
+  target.addEventListener("change", filterByRegion);
+
   toggleDarkModeEl.addEventListener("click", toggleLightAndDarkMode);
 }
-init();
+
+document.addEventListener("DOMContentLoaded", init);
